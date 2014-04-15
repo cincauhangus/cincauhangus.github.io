@@ -7,10 +7,12 @@
 			return this * Math.PI / 180;
 		}
 
-		var currentIndex = 0;
+		function postMessage(msg) {
+			document.getElementById("message").innerHTML = msg;
+		}
 
 		function getLocation(index) {
-			postMessage('debug: getlocation');
+			postMessage('debug: getlocation' + index);
 			if (index && navigator.geolocation) {
 				currentIndex = index;
 				navigator.geolocation.getCurrentPosition(showPosition);
@@ -20,9 +22,12 @@
 		}
 
 		function showPosition(position) {
-			postMessage(position);
-			var x = $("#location"+currentIndex+"-coordinates span")[0].dom;
+			postMessage(position.coords.latitude + "," + position.coords.longitude);
+
+			var x = $("#location"+currentIndex+"-coordinates span")[0];			
 			x.innerHTML = "Location: " + position.coords.latitude + ", " + position.coords.longitude;
+			
+			locations[currentIndex] = position;
 		}
 
 		function calculateDistance(pos1, pos2) {
@@ -37,9 +42,9 @@
 			return R * c;
 		}
 
-		function postMessage(msg) {
-			document.getElementById("message").innerHTML = msg;
-		}
+
+		var currentIndex = 0;
+		var locations = [];
 		</script>
 
 	</head>
