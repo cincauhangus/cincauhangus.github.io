@@ -58,16 +58,17 @@
 			var readableDistance = distance.toString().split('.');
 			readableDistance[1] = readableDistance[1].substring(0, 3);
 			$("#time-to-action #distance span")[0].innerHTML = readableDistance.join('.') + " KM";
+			postDebugMessage("distance diff in km: " + distance);
 
-			var originTime = locations[1][1];
 			//ts2 is irrelevant
+			// formula : ts1 + actual time needed to go the distance at xx kmph
+			var originTime = locations[1][1];
 			var speed = $("#speed")[0].value;
 			var timeNeeded = distance / speed * 60 * 60 * 1000; // in miliseconds
 			var destination = originTime;
 			destination.add('ms', timeNeeded);
-
-			// formula : ts1 + actual time needed to go the distance at 60kmph
-			$("#time-to-action #estimated-time span")[0].innerHTML = destination.format('DD MMMM YYYY, HH:mm:ss') + " (" + destination.from(originTime) + ")";
+			$("#time-to-action #estimated-time span")[0].innerHTML = destination.format('DD MMMM YYYY, HH:mm:ss') + 
+			" (" + destination.from(originTime) + ")";
 
 			postDebugMessage("time diff in ms: " + destination.diff(originTime));
 		}
