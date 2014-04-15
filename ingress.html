@@ -56,12 +56,11 @@
 		function calculate() {
 			var distance = calculateDistance(locations[1][0], locations[2][0]);
 			var readableDistance = distance.toString().split('.');
-			readableDistance[1] = readableDistance[1].substring(0, 3);
+			if (readableDistance.length > 1) 
+				readableDistance[1] = readableDistance[1].substring(0, 3);
 			$("#time-to-action #distance span")[0].innerHTML = readableDistance.join('.') + " KM";
 			postDebugMessage("distance diff in km: " + distance);
 
-			//ts2 is irrelevant
-			// formula : ts1 + actual time needed to go the distance at xx kmph
 			var originTime = locations[1][1];
 			var speed = $("#speed")[0].value;
 			var timeNeeded = Math.ceil(distance / speed * 60 * 60 * 1000); // in miliseconds
@@ -71,11 +70,19 @@
 			" (" + destination.diff(originTime, 'minutes') + " minutes)";
 
 			postDebugMessage("time diff in ms: " + destination.diff(originTime));
-                        postDebugMessage("origin: " + originTime.format());
-                        postDebugMessage("destination: " + destination.format());
-                        postDebugMessage("timeneeded: " + timeNeeded);
+			postDebugMessage("origin: " + originTime.format());
+			postDebugMessage("destination: " + destination.format());
+			postDebugMessage("timeneeded: " + timeNeeded);
 		}
 
+		function reset() {
+			locations = [];
+			debugMsgIdx = 0;
+			postMessage("");
+			$("#debug-message")[0].innerHTML = "";
+			$("#speed")[0].value = "60";
+			$('span').each(function (ix, d){d.innerHTML = ""});
+		}
 
 		var currentIndex = 0, debugMsgIdx = 0;
 		var locations = [];
@@ -124,6 +131,7 @@
 			<div>
 				<h2>Time to Action</h2>
 				<button type="button" id="calculate-time" onClick="javascript:calculate()">Calculate</button>
+				<button type="button" onClick="javascript:reset();">Reset</button>
 				<div id="time-to-action">
 					<div id="distance">Distance: <span></span></div>
 					<div id="estimated-time">Estimated arrival to Destination: <br><span></span></div>
