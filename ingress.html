@@ -19,7 +19,7 @@
 		}
 
 		function getLocation(index) {
-			postDebugMessage('debug: getlocation' + index);
+			postDebugMessage('getlocation' + index);
 			if (index && navigator.geolocation) {
 				currentIndex = index;
 				navigator.geolocation.getCurrentPosition(showPosition);
@@ -53,10 +53,6 @@
 			return R * c;
 		}
 
-		function calculateTime(ts1, ts2) {
-			return ts1.diff(ts2);
-		}
-
 		function calculate() {
 			var distance = calculateDistance(locations[1][0], locations[2][0]);
 			var readableDistance = distance.toString().split('.');
@@ -71,9 +67,9 @@
 			destination.add('ms', timeNeeded);
 
 			// formula : ts1 + actual time needed to go the distance at 60kmph
-			$("#time-to-action #estimated-time span")[0].innerHTML = destination.format('HH:mm:ss') + " (" + destination.from(originTime) + ")";
+			$("#time-to-action #estimated-time span")[0].innerHTML = destination.format('DD MMMM YYYY, HH:mm:ss') + " (" + destination.from(originTime) + ")";
 
-			postDebug(destination.diff(originTime));
+			postDebugMessage("time diff in ms: " + destination.diff(originTime));
 		}
 
 
