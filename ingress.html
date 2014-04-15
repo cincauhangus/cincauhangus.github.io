@@ -65,8 +65,8 @@
 			var originTime = locations[1][1];
 			var speed = $("#speed")[0].value;
 			var timeNeeded = Math.ceil(distance / speed * 60 * 60 * 1000); // in miliseconds
-			var destination = originTime;
-			destination.add('ms', timeNeeded);
+			var destination = moment(originTime); //clone moment obj
+			destination.add("ms", timeNeeded);
 			$("#time-to-action #estimated-time span")[0].innerHTML = destination.format('DD MMMM YYYY, HH:mm:ss') + 
 			" (" + destination.from(originTime) + ")";
 
