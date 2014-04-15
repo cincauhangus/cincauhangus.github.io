@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Ingress Distance/Time To Action</title>
+		<title>Distance/Time To Action</title>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 		<script type="text/javascript">
 		Number.prototype.toRad = function() {
@@ -10,6 +10,7 @@
 		var currentIndex = 0;
 
 		function getLocation(index) {
+			console.log('debug: getlocation');
 			if (index && navigator.geolocation) {
 				currentIndex = index;
 				navigator.geolocation.getCurrentPosition(showPosition);
@@ -19,6 +20,7 @@
 		}
 
 		function showPosition(position) {
+			console.log(position);
 			var x = $("#location"+currentIndex+"-coordinates span")[0].dom;
 			x.innerHTML = "Location: " + position.coords.latitude + ", " + position.coords.longitude;
 		}
@@ -38,7 +40,7 @@
 
 	</head>
 	<body>
-		<h1>Ingress Tools: Location/Time to Action</h1>
+		<h1>Location/Time to Action</h1>
 		<div id="message"></div>
 		<div>
 			<h2>Location 1</h2>
