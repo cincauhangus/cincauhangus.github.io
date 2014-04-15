@@ -66,7 +66,7 @@
 			destination.add('ms', timeNeeded);
 
 			// formula : ts1 + actual time needed to go the distance at 60kmph
-			$("#time-to-action #estimated-time span")[0].innerHTML = destination.format('HH/mm/ss') + " (" + destination.from(originTime, true) + ")";
+			$("#time-to-action #estimated-time span")[0].innerHTML = destination.format('HH:mm:ss') + " (" + destination.from(originTime) + ")" + destination.diff(originTime);
 		}
 
 
@@ -119,7 +119,7 @@
 				<button type="button" id="calculate-time" onClick="javascript:calculate()">Calculate</button>
 				<div id="time-to-action">
 					<div id="distance">Distance: <span></span></div>
-					<div id="estimated-time">Estimated Time to Destination: <span></span></div>
+					<div id="estimated-time">Estimated arrival to Destination: <br><span></span></div>
 				</div>
 			</div>
 		</div>
