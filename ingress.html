@@ -2,6 +2,7 @@
 	<head>
 		<title>Distance/Time To Action</title>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
 		<script type="text/javascript">
 		Number.prototype.toRad = function() {
 			return this * Math.PI / 180;
@@ -28,8 +29,8 @@
 			loc.innerHTML = position.coords.latitude + ", " + position.coords.longitude;
 
 			var ts = $("#location"+currentIndex+"-timestamp span")[0];
-			var timestamp = new Date();
-			ts.innerHTML = timestamp.getTime();
+			var timestamp = moment();
+			ts.innerHTML = timestamp.format();
 
 			locations[currentIndex] = [position, timestamp];
 		}
@@ -47,11 +48,15 @@
 		}
 
 		function calculateTime(ts1, ts2) {
-
+			return ts1.diff(ts2);
 		}
 
 		function calculate() {
+			var distance = calculateDistance(locations[1][0], locations[2][0]);
+			$("#time-to-action #distance")[0].innerHTML = distance;
 
+			//var timeDiff = calculateTime(locations[1][1], locations[2][1]);
+			$("#time-to-action #estimated-time")[0].innerHTML = ts2.from(ts1);
 		}
 
 
@@ -66,7 +71,7 @@
 		<h1>Location/Time to Action</h1>
 		<div id="message"></div>
 		<div>
-			<h2>Location 1</h2>
+			<h2>Origin</h2>
 			<button type="button" id="btn-location1" onClick="javascript:getLocation(1)">Get Location</button>
 			<div id="location1">
 				<div id="location1-coordinates" class="coordinates">Location: <span></span></div>
@@ -74,7 +79,7 @@
 			</div>
 		</div>
 		<div>
-			<h2>Location 2</h2>
+			<h2>Destination</h2>
 			<button type="button" id="btn-location2" onClick="javascript:getLocation(2)">Get Location</button>
 			<div id="location2">
 				<div id="location2-coordinates" class="coordinates">Location: <span></span></div>
@@ -94,7 +99,10 @@
 		<div>
 			<h2>Time to Action</h2>
 			<button type="button" id="calculate-time" onClick="javascript:calculate()">Calculate</button>
-			<div id="time-to-action"></div>
+			<div id="time-to-action">
+				<div id="distance"></div>
+				<div id="estimated-time"></div>
+			</div>
 		</div>
 	</body>
 </html>
