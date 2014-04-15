@@ -55,7 +55,10 @@
 			var distance = calculateDistance(locations[1][0], locations[2][0]);
 			$("#time-to-action #distance")[0].innerHTML = distance;
 
-			//var timeDiff = calculateTime(locations[1][1], locations[2][1]);
+			var ts1 = locations[1][1];
+			var ts2 = locations[2][1];
+
+			//var timeDiff = calculateTime(, locations[2][1]);
 			$("#time-to-action #estimated-time")[0].innerHTML = ts2.from(ts1);
 		}
 
