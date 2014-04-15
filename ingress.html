@@ -54,7 +54,9 @@
 
 		function calculate() {
 			var distance = calculateDistance(locations[1][0], locations[2][0]);
-			$("#time-to-action #distance span")[0].innerHTML = Math.ceil(distance) + " KM (" + distance + ")";
+			var readableDistance = distance.toString().split('.');
+			readableDistance[1] = readableDistance[1].substring(0, 3);
+			$("#time-to-action #distance span")[0].innerHTML = readableDistance.join('.') + " KM";
 
 			var originTime = locations[1][1];
 			//ts2 is irrelevant
@@ -64,7 +66,7 @@
 			destination.add('ms', timeNeeded);
 
 			// formula : ts1 + actual time needed to go the distance at 60kmph
-			$("#time-to-action #estimated-time span")[0].innerHTML = destination.format() + " (" + destination.from(originTime, true) + ")";
+			$("#time-to-action #estimated-time span")[0].innerHTML = destination.format('HH/mm/ss') + " (" + destination.from(originTime, true) + ")";
 		}
 
 
