@@ -46,6 +46,14 @@
 			return R * c;
 		}
 
+		function calculateTime(ts1, ts2) {
+
+		}
+
+		function calculate() {
+
+		}
+
 
 		var currentIndex = 0;
 		var locations = [];
@@ -59,7 +67,7 @@
 		<div id="message"></div>
 		<div>
 			<h2>Location 1</h2>
-			<input type="button" id="btn-location1" onClick="javascript:getLocation(1)" text="Get Location">
+			<button type="button" id="btn-location1" onClick="javascript:getLocation(1)">Get Location</button>
 			<div id="location1">
 				<div id="location1-coordinates" class="coordinates">Location: <span></span></div>
 				<div id="location1-timestamp" class="timestamp">Timestamp: <span></span></div>
@@ -67,17 +75,26 @@
 		</div>
 		<div>
 			<h2>Location 2</h2>
-			<input type="button" id="btn-location1" onClick="javascript:getLocation(2)" text="Get Location">
+			<button type="button" id="btn-location2" onClick="javascript:getLocation(2)">Get Location</button>
 			<div id="location2">
 				<div id="location2-coordinates" class="coordinates">Location: <span></span></div>
 				<div id="location2-timestamp" class="timestamp">Timestamp: <span></span></div>
 			</div>
 		</div>
 		<div>
-			<h2>Speed</h2>
+			<h2>Speed (KM)</h2>
+			<select id="speed">
+				<option value="20">20KM/h</option>
+				<option value="40">40KM/h</option>
+				<option value="60" selected>60KM/h</option>
+				<option value="80">80KM/h</option>
+				<option value="100">100KM/h</option>
+			</select>
 		</div>
 		<div>
-			<h2>Calculate Time to Action</h2>
+			<h2>Time to Action</h2>
+			<button type="button" id="calculate-time" onClick="javascript:calculate()">Calculate</button>
+			<div id="time-to-action"></div>
 		</div>
 	</body>
 </html>
