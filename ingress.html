@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title>Ingress Distance/Time To Action</title>
+		<script type="text/javascript">
+		var x = document.getElementById("current-location");
+		function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition);
+			} else {
+				x.innerHTML = "Geolocation is not supported by your browser";
+			}
+		}
+
+		function showPosition(position) {
+			x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+		}
+		</script>
+	</head>
+	<body>
+			<div id="current-location"></div>
+	</body>
+</html>
