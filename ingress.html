@@ -54,12 +54,12 @@
 
 		function calculate() {
 			var distance = calculateDistance(locations[1][0], locations[2][0]);
-			$("#time-to-action #distance span")[0].innerHTML = (new Number(distance)).ceil() + " KM (" + distance + ")";
+			$("#time-to-action #distance span")[0].innerHTML = Math.ceil(distance) + " KM (" + distance + ")";
 
 			var ts1 = locations[1][1];
 			var ts2 = locations[2][1];
 
-			$("#time-to-action #estimated-time span")[0].innerHTML = (ts2.diff(ts1) / 1000).ceil + " seconds (" + ts2.from(ts1, true) + ")";
+			$("#time-to-action #estimated-time span")[0].innerHTML = Math.ceil(ts2.diff(ts1) / 1000) + " seconds (" + ts2.from(ts1, true) + ")";
 		}
 
 
