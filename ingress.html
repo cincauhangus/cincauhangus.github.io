@@ -59,7 +59,7 @@
 			var ts1 = locations[1][1];
 			var ts2 = locations[2][1];
 
-			$("#time-to-action #estimated-time span")[0].innerHTML = ts1.diff(ts2) / 1000 + "(" + ts2.from(ts1, true) + ")";
+			$("#time-to-action #estimated-time span")[0].innerHTML = ts2.diff(ts1) / 1000 + "(" + ts2.from(ts1, true) + ")";
 		}
 
 
