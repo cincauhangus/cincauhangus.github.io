@@ -2,6 +2,10 @@
 	<head>
 		<title>Ingress Distance/Time To Action</title>
 		<script type="text/javascript">
+		Number.prototype.toRad = function() {
+			return this * Math.PI / 180;
+		}
+
 		var x = document.getElementById("current-location");
 		function getLocation() {
 			if (navigator.geolocation) {
@@ -14,9 +18,45 @@
 		function showPosition(position) {
 			x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
 		}
+
+		function calculateDistance(pos1, pos2) {
+			var R = 6371; //km
+			var dLat = (pos2.coords.latitude - pos1.coords.latitude).toRad();
+			var dLng = (pos2.coords.longitude - pos1.coords.longitude).toRad();
+			var lat1 = pos1.coords.latitude.toRad();
+			var lat2 = pos2.coords.latitude.toRad();
+
+			var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+			var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+			return R * c;
+		}
+		
+		getLocation();
 		</script>
+
 	</head>
 	<body>
-			<div id="current-location"></div>
+			<div>
+				<h1>Location 1</h1>
+				<input type="button">
+				<div id="location1">
+					Location: <br>
+					Timestamp:
+				</div>
+			</div>
+			<div>
+				<h1>Location 2</h1>
+				<input type="button">
+				<div id="location2">
+					Location: <br>
+					Timestamp:
+				</div>
+			</div>
+			<div>
+				Speed
+			</div>
+			<div>
+				Calculate Time to 
+			</div>
 	</body>
 </html>
