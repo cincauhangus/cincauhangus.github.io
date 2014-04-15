@@ -10,7 +10,7 @@
 		var currentIndex = 0;
 
 		function getLocation(index) {
-			console.log('debug: getlocation');
+			postMessage('debug: getlocation');
 			if (index && navigator.geolocation) {
 				currentIndex = index;
 				navigator.geolocation.getCurrentPosition(showPosition);
@@ -20,7 +20,7 @@
 		}
 
 		function showPosition(position) {
-			console.log(position);
+			postMessage(position);
 			var x = $("#location"+currentIndex+"-coordinates span")[0].dom;
 			x.innerHTML = "Location: " + position.coords.latitude + ", " + position.coords.longitude;
 		}
@@ -35,6 +35,10 @@
 			var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
 			var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
 			return R * c;
+		}
+
+		function postMessage(msg) {
+			document.getElementById("message").innerHTML = msg;
 		}
 		</script>
 
