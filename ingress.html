@@ -54,7 +54,7 @@
 
 		function calculate() {
 			var distance = calculateDistance(locations[1][0], locations[2][0]);
-			$("#time-to-action #distance span")[0].innerHTML = distance.ceil() + " KM (" + distance + ")";
+			$("#time-to-action #distance span")[0].innerHTML = (new Number(distance)).ceil() + " KM (" + distance + ")";
 
 			var ts1 = locations[1][1];
 			var ts2 = locations[2][1];
