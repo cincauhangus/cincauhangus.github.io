@@ -65,46 +65,51 @@
 
 		var currentIndex = 0;
 		var locations = [];
-
-
 		</script>
 
+		<style type="text/css">
+		#container {
+			width:750px;
+		}
+		</style>
 	</head>
 	<body>
-		<h1>Location/Time to Action</h1>
-		<div id="message"></div>
-		<div>
-			<h2>Origin</h2>
-			<button type="button" id="btn-location1" onClick="javascript:getLocation(1)">Get Location</button>
-			<div id="location1">
-				<div id="location1-coordinates" class="coordinates">Location: <span></span></div>
-				<div id="location1-timestamp" class="timestamp">Timestamp: <span></span></div>
+		<div id="container">
+			<h1>Location/Time to Action</h1>
+			<div id="message"></div>
+			<div>
+				<h2>Origin</h2>
+				<button type="button" id="btn-location1" onClick="javascript:getLocation(1)">Get Location</button>
+				<div id="location1">
+					<div id="location1-coordinates" class="coordinates">Location: <span></span></div>
+					<div id="location1-timestamp" class="timestamp">Timestamp: <span></span></div>
+				</div>
 			</div>
-		</div>
-		<div>
-			<h2>Destination</h2>
-			<button type="button" id="btn-location2" onClick="javascript:getLocation(2)">Get Location</button>
-			<div id="location2">
-				<div id="location2-coordinates" class="coordinates">Location: <span></span></div>
-				<div id="location2-timestamp" class="timestamp">Timestamp: <span></span></div>
+			<div>
+				<h2>Destination</h2>
+				<button type="button" id="btn-location2" onClick="javascript:getLocation(2)">Get Location</button>
+				<div id="location2">
+					<div id="location2-coordinates" class="coordinates">Location: <span></span></div>
+					<div id="location2-timestamp" class="timestamp">Timestamp: <span></span></div>
+				</div>
 			</div>
-		</div>
-		<div>
-			<h2>Speed (KM)</h2>
-			<select id="speed">
-				<option value="20">20KM/h</option>
-				<option value="40">40KM/h</option>
-				<option value="60" selected>60KM/h</option>
-				<option value="80">80KM/h</option>
-				<option value="100">100KM/h</option>
-			</select>
-		</div>
-		<div>
-			<h2>Time to Action</h2>
-			<button type="button" id="calculate-time" onClick="javascript:calculate()">Calculate</button>
-			<div id="time-to-action">
-				<div id="distance"></div>
-				<div id="estimated-time"></div>
+			<div>
+				<h2>Speed (KM)</h2>
+				<select id="speed">
+					<option value="20">20KM/h</option>
+					<option value="40">40KM/h</option>
+					<option value="60" selected>60KM/h</option>
+					<option value="80">80KM/h</option>
+					<option value="100">100KM/h</option>
+				</select>
+			</div>
+			<div>
+				<h2>Time to Action</h2>
+				<button type="button" id="calculate-time" onClick="javascript:calculate()">Calculate</button>
+				<div id="time-to-action">
+					<div id="distance"></div>
+					<div id="estimated-time"></div>
+				</div>
 			</div>
 		</div>
 	</body>
