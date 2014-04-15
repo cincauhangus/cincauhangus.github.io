@@ -13,8 +13,13 @@
 			document.getElementById("message").innerHTML = msg;
 		}
 
+		function postDebugMessage(msg) {
+			debugMsgIdx++;
+			document.getElementById("debug-message").innerHTML += "<br>" + num + ": " + msg;
+		}
+
 		function getLocation(index) {
-			postMessage('debug: getlocation' + index);
+			postDebugMessage('debug: getlocation' + index);
 			if (index && navigator.geolocation) {
 				currentIndex = index;
 				navigator.geolocation.getCurrentPosition(showPosition);
@@ -24,14 +29,14 @@
 		}
 
 		function showPosition(position) {
-			postMessage(position.coords.latitude + "," + position.coords.longitude);
+			postDebugMessage(position.coords.latitude + "," + position.coords.longitude);
 
 			var loc = $("#location"+currentIndex+"-coordinates span")[0];
 			loc.innerHTML = position.coords.latitude + ", " + position.coords.longitude;
 
 			var ts = $("#location"+currentIndex+"-timestamp span")[0];
 			var timestamp = moment();
-			ts.innerHTML = timestamp.format();
+			ts.innerHTML = timestamp.format("DD MMMM YYYY, HH:mm:ss");
 
 			locations[currentIndex] = [position, timestamp];
 		}
@@ -66,11 +71,13 @@
 			destination.add('ms', timeNeeded);
 
 			// formula : ts1 + actual time needed to go the distance at 60kmph
-			$("#time-to-action #estimated-time span")[0].innerHTML = destination.format('HH:mm:ss') + " (" + destination.from(originTime) + ")" + destination.diff(originTime);
+			$("#time-to-action #estimated-time span")[0].innerHTML = destination.format('HH:mm:ss') + " (" + destination.from(originTime) + ")";
+
+			postDebug(destination.diff(originTime));
 		}
 
 
-		var currentIndex = 0;
+		var currentIndex = 0, debugMsgIdx = 0;
 		var locations = [];
 		</script>
 
@@ -122,6 +129,8 @@
 					<div id="estimated-time">Estimated arrival to Destination: <br><span></span></div>
 				</div>
 			</div>
+
+			<div id="debug-message"></div>
 		</div>
 	</body>
 </html>
