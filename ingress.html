@@ -19,7 +19,7 @@
 		}
 
 		function showPosition(position) {
-			var x = document.getElementById();
+			var x = $("#location"+currentIndex+"-coordinates span")[0].dom;
 			x.innerHTML = "Location: " + position.coords.latitude + ", " + position.coords.longitude;
 		}
 
@@ -46,16 +46,16 @@
 			<h2>Location 1</h2>
 			<input type="button" id="btn-location1" onClick="javascript:getLocation(1)">
 			<div id="location1">
-				<div id="location1-coordinates" class="coordinates">Location:<span></span></div>
-				<div id="location1-timestamp" class="timestamp">Timestamp:<span></span></div>
+				<div id="location1-coordinates" class="coordinates">Location: <span></span></div>
+				<div id="location1-timestamp" class="timestamp">Timestamp: <span></span></div>
 			</div>
 		</div>
 		<div>
 			<h2>Location 2</h2>
 			<input type="button" id="btn-location1" onClick="javascript:getLocation(2)">
 			<div id="location2">
-				<div id="location2-coordinates" class="coordinates">Location:<span></span></div>
-				<div id="location2-timestamp" class="timestamp">Timestamp:<span></span></div>
+				<div id="location2-coordinates" class="coordinates">Location: <span></span></div>
+				<div id="location2-timestamp" class="timestamp">Timestamp: <span></span></div>
 			</div>
 		</div>
 		<div>
