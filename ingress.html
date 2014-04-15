@@ -24,10 +24,14 @@
 		function showPosition(position) {
 			postMessage(position.coords.latitude + "," + position.coords.longitude);
 
-			var x = $("#location"+currentIndex+"-coordinates span")[0];			
-			x.innerHTML = "Location: " + position.coords.latitude + ", " + position.coords.longitude;
-			
-			locations[currentIndex] = position;
+			var loc = $("#location"+currentIndex+"-coordinates span")[0];
+			loc.innerHTML = position.coords.latitude + ", " + position.coords.longitude;
+
+			var ts = $("#location"+currentIndex+"-timestamp span")[0];
+			var timestamp = new Date();
+			ts.innerHTML = timestamp.getTime();
+
+			locations[currentIndex] = [position, timestamp];
 		}
 
 		function calculateDistance(pos1, pos2) {
@@ -45,6 +49,8 @@
 
 		var currentIndex = 0;
 		var locations = [];
+
+
 		</script>
 
 	</head>
@@ -53,7 +59,7 @@
 		<div id="message"></div>
 		<div>
 			<h2>Location 1</h2>
-			<input type="button" id="btn-location1" onClick="javascript:getLocation(1)">
+			<input type="button" id="btn-location1" onClick="javascript:getLocation(1)" text="Get Location">
 			<div id="location1">
 				<div id="location1-coordinates" class="coordinates">Location: <span></span></div>
 				<div id="location1-timestamp" class="timestamp">Timestamp: <span></span></div>
@@ -61,7 +67,7 @@
 		</div>
 		<div>
 			<h2>Location 2</h2>
-			<input type="button" id="btn-location1" onClick="javascript:getLocation(2)">
+			<input type="button" id="btn-location1" onClick="javascript:getLocation(2)" text="Get Location">
 			<div id="location2">
 				<div id="location2-coordinates" class="coordinates">Location: <span></span></div>
 				<div id="location2-timestamp" class="timestamp">Timestamp: <span></span></div>
