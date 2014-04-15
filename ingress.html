@@ -68,7 +68,7 @@
 			var destination = moment(originTime); //clone moment obj
 			destination.add("ms", timeNeeded);
 			$("#time-to-action #estimated-time span")[0].innerHTML = destination.format('DD MMMM YYYY, HH:mm:ss') + 
-			" (" + destination.from(originTime) + ", " + destination.diff(originTime, 'minutes', true) + ")";
+			" (" + destination.from(originTime) + ", " + destination.diff(originTime, 'minutes') + " minutes)";
 
 			postDebugMessage("time diff in ms: " + destination.diff(originTime));
                         postDebugMessage("origin: " + originTime.format());
