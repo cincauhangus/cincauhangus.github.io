@@ -13,6 +13,7 @@
 
 		function postMessage(msg, isError) {
 			document.getElementById("message").innerHTML = msg;
+			$("#message-container").removeClass('hide');
 		}
 
 		function postDebugMessage(msg) {
@@ -24,11 +25,13 @@
 			postDebugMessage('getlocation' + index);
 			if (index && navigator.geolocation) {
 				currentIndex = index;
-				navigator.geolocation.getCurrentPosition(showPosition, function () {
+				navigator.geolocation.getCurrentPosition(showPosition, function (e) {
 					postMessage("Error: Unable to get your location. Is your GPS turned on?");
+					postDebugMessage('error: no gps found' + e);
 				});
 			} else {
 				postMessage("Error: Geolocation is not supported by your browser.");
+					postDebugMessage('error: no gps support');
 			}
 		}
 
@@ -84,6 +87,7 @@
 			debugMsgIdx = 0;
 			postMessage("");
 			$("#debug-message")[0].innerHTML = "";
+			$("#message-container").addClass('hide');
 			$("#speed")[0].value = "60";
 			$('span').each(function (ix, d){d.innerHTML = ""});
 		}
@@ -114,7 +118,6 @@
 		<br />
 		<div id="message-container" class="row hide">
 			<div id="message" data-alert class="alert-box alert hide">
-				Some content goes here!!!!
 				<a href="#" class="close">&times;</a>
 			</div>
 		</div>
