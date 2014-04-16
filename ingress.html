@@ -68,14 +68,14 @@
 			var originTime = locations[1][1];
 			var speed = $("#speed")[0].value;
 			var timeNeeded = Math.ceil(distance / speed * 60 * 60 * 1000); // in miliseconds
-			var destination = moment(originTime); //clone moment obj
-			destination.add("ms", timeNeeded);
-			$("#time-to-action #estimated-time span")[0].innerHTML = destination.format('DD MMMM YYYY, HH:mm:ss') + 
-			" (" + destination.diff(originTime, 'minutes') + " minutes)";
+			var arrivalTime = moment(originTime); //clone moment obj
+			arrivalTime.add("ms", timeNeeded);
+			$("#time-to-action #estimated-time span")[0].innerHTML = arrivalTime.format('DD MMMM YYYY, HH:mm:ss') + 
+			" (in " + arrivalTime.diff(moment(), 'minutes') + " minutes)";
 
-			postDebugMessage("time diff in ms: " + destination.diff(originTime));
+			postDebugMessage("time diff in ms: " + arrivalTime.diff(originTime));
 			postDebugMessage("origin: " + originTime.format());
-			postDebugMessage("destination: " + destination.format());
+			postDebugMessage("arrivalTime: " + arrivalTime.format());
 			postDebugMessage("timeneeded: " + timeNeeded);
 		}
 
@@ -165,7 +165,7 @@
 						<span>0KM</span>
 					</dl>
 					<dl id="estimated-time">
-						<dt>Estimated arrival to Destination: </dt>
+						<dt>Estimated arrival to destination: </dt>
 						<span>N/A</span>
 					</dl>
 				</div>
