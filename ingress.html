@@ -22,9 +22,11 @@
 			postDebugMessage('getlocation' + index);
 			if (index && navigator.geolocation) {
 				currentIndex = index;
-				navigator.geolocation.getCurrentPosition(showPosition);
+				navigator.geolocation.getCurrentPosition(showPosition, function () {
+					postMessage("Unable to get your location");
+				});
 			} else {
-				document.getElementById("message").innerHTML = "Geolocation is not supported by your browser";
+				postMessage("Geolocation is not supported by your browser");
 			}
 		}
 
