@@ -3,6 +3,7 @@
 		<title>Distance/Time To Action</title>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.2/js/foundation.min.js"></script>
 		<!--link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"-->
 		<script type="text/javascript">
 		Number.prototype.toRad = function() {
@@ -101,27 +102,56 @@
 		</style>
 	</head>
 	<body>
-		<div id="container">
-			<h1>Location/Time to Action</h1>
-			<div id="message"></div>
-			<div>
+
+		<nav class="top-bar" data-topbar>
+			<ul class="title-area">
+				<li class="name">
+					<h1><a href="#">Location/Time to Action</a></h1>
+				</li>
+			</ul>
+
+			<section class="top-bar-section">
+				<!-- Right Nav Section -->
+				<ul class="right">
+				</ul>
+
+				<!-- Left Nav Section -->
+				<ul class="left">
+				</ul>
+			</section>
+		</nav>
+
+		<br />
+		<div id="message-container" class="row hide">
+			<div id="message" data-alert class="alert-box alert hide">
+				Some content goes here!!!!
+				<a href="#" class="close">&times;</a>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="large-6 columns">
 				<h2>Origin</h2>
-				<button type="button" id="btn-location1" onClick="javascript:getLocation(1)">Get Location</button>
-				<div id="location1">
+				<button type="button" class="button expand radius" id="btn-location1" onClick="javascript:getLocation(1)">Get Location</button>
+				<dl id="location1">
 					<div id="location1-coordinates" class="coordinates">Location: <span></span></div>
 					<div id="location1-timestamp" class="timestamp">Timestamp: <span></span></div>
-				</div>
+				</dl>
 			</div>
-			<div>
+			<div class="large-6 columns">
 				<h2>Destination</h2>
-				<button type="button" id="btn-location2" onClick="javascript:getLocation(2)">Get Location</button>
-				<div id="location2">
+				<button type="button" class="button expand radius" id="btn-location2" onClick="javascript:getLocation(2)">Get Location</button>
+				<dl id="location2">
 					<div id="location2-coordinates" class="coordinates">Location: <span></span></div>
 					<div id="location2-timestamp" class="timestamp">Timestamp: <span></span></div>
-				</div>
+				</dl>
 			</div>
-			<div>
+		</div>
+
+		<div class="row">
+			<div class="large-6 columns">
 				<h2>Speed (KM)</h2>
+				Select speed: 
 				<select id="speed">
 					<option value="20">20KM/h</option>
 					<option value="40">40KM/h</option>
@@ -130,17 +160,30 @@
 					<option value="100">100KM/h</option>
 				</select>
 			</div>
-			<div>
+
+			<div class="large-6 columns">
 				<h2>Time to Action</h2>
-				<button type="button" id="calculate-time" onClick="javascript:calculate()">Calculate</button>
-				<button type="button" onClick="javascript:reset();">Reset</button>
+				<div class="button-bar">
+					<ul class="button-group radius">
+						<li><a href="#" class="button" onClick="javascript:calculate()">Calculate</a></li>
+						<li><a href="#" class="button alert" onClick="javascript:reset();">Reset</a></li>
+					</ul>
+				</div>
 				<div id="time-to-action">
-					<div id="distance">Distance: <span></span></div>
-					<div id="estimated-time">Estimated arrival to Destination: <br><span></span></div>
+					<dl id="distance">
+						<dt>Distance: </dt>
+						<dd>0KM</dd>
+					</dl>
+					<dl id="estimated-time">
+						<dt>Estimated arrival to Destination: </dt>
+						<dd>N/A</dd>
+					</dl>
 				</div>
 			</div>
+		</div>
 
-			<div id="debug-message"></div>
+		<div class="row">
+			<div id="debug-message"></div>  
 		</div>
 	</body>
 </html>
