@@ -18,6 +18,8 @@
 
 		function postDebugMessage(msg) {
 			debugMsgIdx++;
+			if (debugMsgIdx == 1) 
+				document.getElementById("debug-message").innerHTML = "<hr><h4>Debugging:</h4><br>";
 			document.getElementById("debug-message").innerHTML += "<h4><small>" + debugMsgIdx + ": " + msg + "</small></h4>";
 		}
 
@@ -74,7 +76,7 @@
 			var arrivalTime = moment(originTime); //clone moment obj
 			arrivalTime.add("ms", timeNeeded);
 			$("#time-to-action #estimated-time span")[0].innerHTML = arrivalTime.format('DD MMMM YYYY, HH:mm:ss') + 
-			" (in " + arrivalTime.diff(moment(), 'minutes') + " minutes)";
+			" (" + arrivalTime.from(moment(), 'minutes') + ")";
 
 			postDebugMessage("time diff in ms: " + arrivalTime.diff(originTime));
 			postDebugMessage("origin: " + originTime.format());
