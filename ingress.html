@@ -9,7 +9,7 @@
 			return this * Math.PI / 180;
 		}
 
-		function postMessage(msg) {
+		function postMessage(msg, isError) {
 			document.getElementById("message").innerHTML = msg;
 		}
 
@@ -23,10 +23,10 @@
 			if (index && navigator.geolocation) {
 				currentIndex = index;
 				navigator.geolocation.getCurrentPosition(showPosition, function () {
-					postMessage("Unable to get your location");
+					postMessage("Error: Unable to get your location. Is your GPS turned on?");
 				});
 			} else {
-				postMessage("Geolocation is not supported by your browser");
+				postMessage("Error: Geolocation is not supported by your browser.");
 			}
 		}
 
